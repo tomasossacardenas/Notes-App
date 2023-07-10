@@ -3,7 +3,7 @@ const router = require("express").Router(); //Execute the method Router that fac
 const Note=require('../models/Note');
 
 router.get('/notes/add', (req, res)=>{
-    res.render('new-note');
+    res.render('notes/new-note');
 });
 
 router.post('/notes/new-note', async (req, res)=>{ //async to indicate this function has asynchronous activities
@@ -16,7 +16,7 @@ router.post('/notes/new-note', async (req, res)=>{ //async to indicate this func
         errors.push({text: 'Please Write a description'})
     }
     if(errors.length>0){
-        res.render('new-note',{
+        res.render('notes/new-note',{
             errors, 
             title,
             description
@@ -34,12 +34,12 @@ router.post('/notes/new-note', async (req, res)=>{ //async to indicate this func
 
 router.get('/notes', async (req, res)=>{
     const notes=await Note.find().lean();
-    res.render('all-notes',{notes});
+    res.render('notes/all-notes',{notes});
 });
 
 router.get('/notes/edit/:id', async (req, res)=>{
     const note=await Note.findById(req.params.id).lean();
-    res.render('edit-note',{note});
+    res.render('notes/edit-note',{note});
 });
 
 
