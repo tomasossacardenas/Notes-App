@@ -1,7 +1,7 @@
 <div class="row">
     {{#each notes}}
         <div class="col-md-3">
-            <div class="card">
+            <div class="card shadow-sm mb-5 bg-white">
                 <div class="card-body">
                     <h4 class="card-title d-flex justify-content-between align-items-center">{{title}} <a href="/notes/edit/{{_id}}"><i class="fas fa-edit"></i></a> 
 
@@ -12,21 +12,32 @@
                     {{!-- Put the button of delete inside a form to process it as a delete request --}}
                     <form action="/notes/delete/{{_id}}?_method=DELETE" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
+                        <div class="d-flex flex-column">
                         <button class="btn btn-danger btn-block btn-sm" type="submit">
                             Delete
                         </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     {{else}}
-    <div class="card mx-auto">
-        <div class="card-body">
+        <div class="container d-flex justify-content-center align-items-center">
+        <div class="card mx-auto shadow-sm mb-5 bg-white rounded px-4">
+            <div class="card-body">
+            {{#if user}}
+                <h1>Hello {{user.name}}</h1>
+            {{/if}}
             <p class="lead">
                 There are no notes yet.
             </p>
-            <a href="/notes/add" class="btn btn-success btn-block">Create One!</a>
+            <div class="d-flex flex-column">
+                <a href="/notes/add" class="btn btn-success btn-block">Create One!</a>
+            </div>
+
+            </div>
+
         </div>
-    </div>
+        </div>
     {{/each}}
 </div>

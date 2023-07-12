@@ -1,0 +1,21 @@
+{{!-- For handlebars, if this page is called and passed with errors then is because the form has errors and we need to show it to the user --}}
+
+{{!-- Errors from passport authetication --}}
+{{#if error}}
+    <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-between" role="alert">
+    {{error}}
+        <button type="button" class="close transparent-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{{/if}}
+
+{{!-- Our own errors --}}
+{{#each errors}}
+    <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-between" role="alert">
+    {{text}}
+        <button type="button" class="close transparent-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{{/each}}
